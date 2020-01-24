@@ -1,0 +1,6 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost/askfood?createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: root
+        password: root
+
