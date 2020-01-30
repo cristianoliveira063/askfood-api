@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.askfood</groupId>
     <artifactId>askfood-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>askfood-api</name>
     <description>Delivery de pedidos de comida</description>
 
