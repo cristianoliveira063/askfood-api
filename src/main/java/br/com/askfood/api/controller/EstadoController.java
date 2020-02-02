@@ -2,6 +2,7 @@ package br.com.askfood.api.controller;
 
 import br.com.askfood.domain.model.Estado;
 import br.com.askfood.domain.repository.EstadoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,11 +13,8 @@ import java.util.List;
 @RequestMapping("/estados")
 public class EstadoController {
 
+    @Autowired
     private EstadoRepository  estadoRepository;
-
-    public EstadoController(EstadoRepository estadoRepository) {
-        this.estadoRepository = estadoRepository;
-    }
 
     @GetMapping
     public List<Estado> listar(){
