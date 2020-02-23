@@ -1,5 +1,7 @@
 package br.com.askfood.api.controller;
 
+import br.com.askfood.domain.exception.EntidadeNaoEncontradaException;
+import br.com.askfood.domain.exception.NegocioException;
 import br.com.askfood.domain.model.Restaurante;
 import br.com.askfood.domain.repository.RestauranteRepository;
 import br.com.askfood.domain.service.CadastroRestauranteService;
@@ -50,7 +52,12 @@ public class RestauranteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Restaurante adicionar(@RequestBody Restaurante restaurante) {
-        return cadastroRestauranteService.salvar(restaurante);
+        try {
+            return cadastroRestauranteService.salvar(restaurante);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
+
     }
 
 //	@PutMapping("/{restauranteId}")
@@ -83,8 +90,12 @@ public class RestauranteController {
 
         BeanUtils.copyProperties(restaurante, restauranteAtual,
                 "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
+        try {
+            return cadastroRestauranteService.salvar(restauranteAtual);
+        } catch (EntidadeNaoEncontradaException e) {
+            throw new NegocioException(e.getMessage());
+        }
 
-        return cadastroRestauranteService.salvar(restauranteAtual);
     }
 
     @PatchMapping("/{restauranteId}")
