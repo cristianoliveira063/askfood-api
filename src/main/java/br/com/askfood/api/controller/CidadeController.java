@@ -1,5 +1,8 @@
 package br.com.askfood.api.controller;
 
+import br.com.askfood.domain.exception.EntidadeNaoEncontradaException;
+import br.com.askfood.domain.exception.EstadoNaoEncontradoException;
+import br.com.askfood.domain.exception.NegocioException;
 import br.com.askfood.domain.model.Cidade;
 import br.com.askfood.domain.repository.CidadeRepository;
 import br.com.askfood.domain.service.CadastroCidadeService;
@@ -47,7 +50,12 @@ public class CidadeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cidade adicionar(@RequestBody Cidade cidade) {
-        return cadastroCidadeService.salvar(cidade);
+        try {
+            return cadastroCidadeService.salvar(cidade);
+        } catch (EstadoNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage());
+        }
+
     }
 
 //	@PutMapping("/{cidadeId}")
@@ -74,11 +82,15 @@ public class CidadeController {
     @PutMapping("/{cidadeId}")
     public Cidade atualizar(@PathVariable Long cidadeId,
                             @RequestBody Cidade cidade) {
-        Cidade cidadeAtual = cadastroCidadeService.buscarOuFalhar(cidadeId);
+        try {
+            Cidade cidadeAtual = cadastroCidadeService.buscarOuFalhar(cidadeId);
 
-        BeanUtils.copyProperties(cidade, cidadeAtual, "id");
+            BeanUtils.copyProperties(cidade, cidadeAtual, "id");
+            return cadastroCidadeService.salvar(cidadeAtual);
+        } catch (EstadoNaoEncontradoException e) {
+            throw new NegocioException(e.getMessage());
+        }
 
-        return cadastroCidadeService.salvar(cidadeAtual);
     }
 
     @DeleteMapping("/{cidadeId}")

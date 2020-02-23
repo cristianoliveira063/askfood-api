@@ -1,6 +1,6 @@
 package br.com.askfood.domain.service;
 
-import br.com.askfood.domain.exception.EntidadeNaoEncontradaException;
+import br.com.askfood.domain.exception.RestauranteNaoEncontradoException;
 import br.com.askfood.domain.model.Cozinha;
 import br.com.askfood.domain.model.Restaurante;
 import br.com.askfood.domain.repository.RestauranteRepository;
@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CadastroRestauranteService {
 
-    private static final String MSG_RESTAURANTE_NAO_ENCONTRADO
-            = "Não existe um cadastro de restaurante com código %d";
 
     @Autowired
     private RestauranteRepository restauranteRepository;
@@ -36,8 +34,7 @@ public class CadastroRestauranteService {
 
     public Restaurante buscarOuFalhar(Long cidadeId) {
         return restauranteRepository.findById(cidadeId)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(
-                        String.format(MSG_RESTAURANTE_NAO_ENCONTRADO, cidadeId)));
+                .orElseThrow(() -> new RestauranteNaoEncontradoException(cidadeId));
     }
 
 

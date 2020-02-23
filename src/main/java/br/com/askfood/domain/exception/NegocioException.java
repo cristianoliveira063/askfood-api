@@ -1,11 +1,12 @@
 package br.com.askfood.domain.exception;
 
 
-public class EntidadeEmUsoException extends RuntimeException {
+
+public class NegocioException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public EntidadeEmUsoException(String mensagem) {
+    public NegocioException(String mensagem) {
         super(mensagem);
     }
 
