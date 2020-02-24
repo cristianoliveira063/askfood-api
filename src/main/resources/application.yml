@@ -3,6 +3,10 @@ spring:
         password: root
         url: jdbc:mysql://localhost/askfood?createDatabaseIfNotExist=true&serverTimezone=UTC
         username: root
+    jackson:
+        deserialization:
+            fail-on-ignored-properties: true
+            fail-on-unknown-properties: true
     jpa:
         properties:
             hibernate:
