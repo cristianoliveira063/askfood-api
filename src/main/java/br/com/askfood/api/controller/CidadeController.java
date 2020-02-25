@@ -1,6 +1,5 @@
 package br.com.askfood.api.controller;
 
-import br.com.askfood.domain.exception.EntidadeNaoEncontradaException;
 import br.com.askfood.domain.exception.EstadoNaoEncontradoException;
 import br.com.askfood.domain.exception.NegocioException;
 import br.com.askfood.domain.model.Cidade;
@@ -34,18 +33,6 @@ public class CidadeController {
         return cadastroCidadeService.buscarOuFalhar(cidadeId);
     }
 
-//	@PostMapping
-//	public ResponseEntity<?> adicionar(@RequestBody Cidade cidade) {
-//		try {
-//			cidade = cadastroCidade.salvar(cidade);
-//
-//			return ResponseEntity.status(HttpStatus.CREATED)
-//					.body(cidade);
-//		} catch (EntidadeNaoEncontradaException e) {
-//			return ResponseEntity.badRequest()
-//					.body(e.getMessage());
-//		}
-//	}
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,26 +45,6 @@ public class CidadeController {
 
     }
 
-//	@PutMapping("/{cidadeId}")
-//	public ResponseEntity<?> atualizar(@PathVariable Long cidadeId,
-//			@RequestBody Cidade cidade) {
-//		try {
-//			Cidade cidadeAtual = cidadeRepository.findById(cidadeId).orElse(null);
-//
-//			if (cidadeAtual != null) {
-//				BeanUtils.copyProperties(cidade, cidadeAtual, "id");
-//
-//				cidadeAtual = cadastroCidade.salvar(cidadeAtual);
-//				return ResponseEntity.ok(cidadeAtual);
-//			}
-//
-//			return ResponseEntity.notFound().build();
-//
-//		} catch (EntidadeNaoEncontradaException e) {
-//			return ResponseEntity.badRequest()
-//					.body(e.getMessage());
-//		}
-//	}
 
     @PutMapping("/{cidadeId}")
     public Cidade atualizar(@PathVariable Long cidadeId,
