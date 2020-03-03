@@ -2,13 +2,13 @@ package br.com.askfood.domain.service;
 
 import br.com.askfood.domain.exception.CozinhaNaoEncontradaException;
 import br.com.askfood.domain.exception.EntidadeEmUsoException;
-import br.com.askfood.domain.exception.EntidadeNaoEncontradaException;
 import br.com.askfood.domain.model.Cozinha;
 import br.com.askfood.domain.repository.CozinhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CadastroCozinhaService {
@@ -19,10 +19,14 @@ public class CadastroCozinhaService {
     @Autowired
     private CozinhaRepository cozinhaRepository;
 
+
+    @Transactional
     public Cozinha salvar(Cozinha cozinha) {
         return cozinhaRepository.save(cozinha);
     }
 
+
+    @Transactional
     public void excluir(Long cozinhaId) {
         try {
             cozinhaRepository.deleteById(cozinhaId);
