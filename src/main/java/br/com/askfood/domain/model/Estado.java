@@ -1,6 +1,6 @@
 package br.com.askfood.domain.model;
 
-import br.com.askfood.Groups;
+import br.com.askfood.core.validation.Groups;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

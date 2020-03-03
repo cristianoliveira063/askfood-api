@@ -1,4 +1,4 @@
-package br.com.askfood;
+package br.com.askfood.core.validation;
 
 public interface Groups {
 
